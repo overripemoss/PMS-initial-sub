@@ -7,13 +7,16 @@ namespace NewUser
          public class Users
          {
          [DynamoDBHashKey]
-         public int UserID { get; set;}
+         public int UserID { get; set;
+         }
 
           [DynamoDBRangeKey]
-          public string UserName { get; set;}
+          public string UserName { get; set;
+          }
         
          [DynamoDBProperty]
-          public string Password {get; set;}
+          public string Password { get; set;
+          }
 
     }
 }

@@ -23,23 +23,21 @@
 </div>
 
 @code{
-    public int UserID;
-    public string UserName;
-    public string Password;
+
     public static string username = "";
     public static string password = "";
     //method to create a new user
     public void AddUser()
     {
-        UserID = UserInt();
-        UserName = username;
-        Password = password;
         Users U1 = new Users();
+        U1.UserID = UserInt();
+        U1.UserName = username;
+        U1.Password = password;
         db.SaveItem(U1);
         Nav.NavigateTo("/");
     }
-     int UserInt() {
-     Random rand = new Random();
-     return (int)rand.NextInt64((long)999);
+    int UserInt() {
+    Random rand = new Random();
+    return (int)rand.NextInt64((long)999);
     }
 }
