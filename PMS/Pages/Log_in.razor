@@ -1,0 +1,30 @@
+﻿@page "/Login"
+@inject NavigationManager Navigate
+<head>
+    <style>
+        body {
+            background-color: #296648;
+        }
+
+        .inputs {
+            position: fixed;
+        }
+    </style>
+
+</head>
+<div class="inputs">
+    <input type="text" @bind="@Username" />
+    <input type="password" @bind="@Password" />
+    <button @onclick="@LogUser">Log in</button>
+</div>
+@code{
+    string Username = "";
+    string Password = "";
+    public void LogUser()
+    {
+
+        Navigate.NavigateTo("/");
+    }
+}
+
+

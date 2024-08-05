@@ -1,0 +1,36 @@
+﻿@page "/ProductsEdit"
+@inject NavigationManager Navigate
+
+<head>
+    <style>
+        body {
+            background-color: #296648;
+        }
+
+        .Productdetails {
+            color: #EBFFF4;
+        }
+    </style>
+</head>
+<div class="Productdetails">
+
+    <h1>Name of product</h1>
+    <input type="text" @bind="@input" />
+    <h1>Amount of product in stock</h1>
+    <input type="number" value="" />
+    <h1>Amount product that can fit on the shelf</h1>
+    <input type="number" value="" />
+    <h1>How much product come in each delivery</h1>
+    <input type="number" value="" />
+
+    <button @onclick="@AddProduct">Add Product</button>
+</div>
+
+@code{
+    public string input = "";
+    public void AddProduct()
+    {
+        Navigate.NavigateTo("/Products");
+    }
+
+}

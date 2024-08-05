@@ -1,0 +1,51 @@
+﻿@page "/Products"
+@inject NavigationManager Navigate
+@inject Database.dataBase db
+@using Database;
+@using NewProduct;
+
+    <head>
+        <style>
+            body {
+                background-color: #296648;
+            }
+
+            .Productdetails {
+                color: #EBFFF4;
+            }
+        </style>
+    </head>
+    <div class="Productdetails">
+
+        <h1>Name of product</h1>
+        <input type="text" @bind="@Name" />
+        <h1>Amount of product in stock</h1>
+        <input type="number" @bind="@stock" />
+        <h1>Amount product that can fit on the shelf</h1>
+        <input type="number" @bind="@shelf" />
+        <h1>How much product come in each delivery</h1>
+        <input type="number" @bind="@delivery" />
+
+        <button @onclick="@AddProduct">Add Product</button>
+    </div>
+
+    @code{
+        public int ProductID;
+        public static string Name = "";
+        public static int stock = 0;
+        public static int shelf = 0;
+        public static int delivery = 0;
+        
+        public void AddProduct()
+        {
+            ProductID = randInt();
+            Navigate.NavigateTo("/");
+            Product P1 = new Product();
+            db.SaveItem(P1);
+        }
+        int randInt() {
+            Random rand = new Random();
+            return (int)rand.NextInt64((long)999);
+        }
+    }
+  

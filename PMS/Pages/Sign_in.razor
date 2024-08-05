@@ -1,0 +1,45 @@
+﻿@page "/Signin"
+@inject NavigationManager Nav
+@inject Database.dataBase db
+@using Database;
+@using NewUser;
+
+<head>
+    <style>
+        body {
+            background-color: #296648;
+        }
+        .inputs {
+            color: #EBFFF4;
+        }
+    </style>
+</head>
+<div class="inputs">
+    <input type="text" @bind="@username" id="Username" required title="This username already exists"/>
+    <input type="password" @bind="@password" id="Password" required title="This password already exists"/>
+    <button @onclick="@AddUser">Sign in</button>
+
+
+</div>
+
+@code{
+    public int UserID;
+    public string UserName;
+    public string Password;
+    public static string username = "";
+    public static string password = "";
+    //method to create a new user
+    public void AddUser()
+    {
+        UserID = UserInt();
+        UserName = username;
+        Password = password;
+        Users U1 = new Users();
+        db.SaveItem(U1);
+        Nav.NavigateTo("/");
+    }
+     int UserInt() {
+     Random rand = new Random();
+     return (int)rand.NextInt64((long)999);
+    }
+}
