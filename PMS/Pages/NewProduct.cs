@@ -9,6 +9,13 @@ namespace NewProduct
             public int ProductID { get; set;}
             [DynamoDBRangeKey]
             public string Name { get; set;}
+            [DynamoDBProperty]
+            public int Stock { get; set;}
+            [DynamoDBProperty]
+            public int Shelf { get; set;}
+            [DynamoDBProperty]
+            public int Delivery { get; set;}
+            
 
 
         }

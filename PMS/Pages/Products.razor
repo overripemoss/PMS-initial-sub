@@ -38,10 +38,14 @@
         
         public void AddProduct()
         {
-            ProductID = randInt();
-            Navigate.NavigateTo("/");
             Product P1 = new Product();
+            P1.ProductID = randInt();
+            P1.Name = Name;
+            P1.Stock = stock;
+            P1.Shelf = shelf;
+            P1.Delivery = delivery;
             db.SaveItem(P1);
+            Navigate.NavigateTo("/");
         }
         int randInt() {
             Random rand = new Random();
