@@ -25,6 +25,10 @@
         <input type="number" @bind="@shelf" />
         <h1>How much product come in each delivery</h1>
         <input type="number" @bind="@delivery" />
+        <h1>Price of item</h1>
+        <input type="number" @bind="@price"/>
+        <h1>Cost per unit</h1>
+        <input type="number" @bind="@buy"/>
 
         <button @onclick="@AddProduct">Add Product</button>
     </div>
@@ -35,6 +39,8 @@
         public static int stock = 0;
         public static int shelf = 0;
         public static int delivery = 0;
+        public static int price = 0;
+        public static int buy = 0;
         
         public void AddProduct()
         {
@@ -44,6 +50,7 @@
             P1.Stock = stock;
             P1.Shelf = shelf;
             P1.Delivery = delivery;
+            P1.Cost = buy;
             db.SaveItem(P1);
             Navigate.NavigateTo("/");
         }

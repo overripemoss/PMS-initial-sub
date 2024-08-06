@@ -23,7 +23,7 @@
 </div>
 
 @code{
-
+    public static bool LogedIn = false;
     public static string username = "";
     public static string password = "";
     //method to create a new user
@@ -34,6 +34,7 @@
         U1.UserName = username;
         U1.Password = password;
         db.SaveItem(U1);
+        LogedIn = true;
         Nav.NavigateTo("/");
     }
     int UserInt() {

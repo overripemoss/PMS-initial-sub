@@ -15,7 +15,12 @@ namespace NewProduct
             public int Shelf { get; set;}
             [DynamoDBProperty]
             public int Delivery { get; set;}
-            
+            [DynamoDBProperty]
+            public int Price {get; set;}
+
+            [DynamoDBProperty]
+            public int Cost {get; set;}
+
 
 
         }

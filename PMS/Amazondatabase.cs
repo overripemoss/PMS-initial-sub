@@ -2,6 +2,7 @@
 using Amazon;
 using Amazon.DynamoDBv2;
 using Amazon.DynamoDBv2.DataModel;
+using Amazon.DynamoDBv2.DocumentModel;
 using Amazon.Runtime;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
@@ -30,8 +31,8 @@ namespace Database
         }
         public void GetItem()
         {
-         //   IEnumerable<ScanCondition> 
-           // List<Products> Products = dbContext.ScanAsync<Products>(model).GetRemainingAsync().Result;
+            //IEnumerable<ScanCondition> scanConditions = dbContext.FromScanAsync(new ScanCondition("ProductID",ScanOperator.LessThan, 1000));
+            //List<Products> Products = dbContext.ScanAsync<Products>(Products.All<Products>).GetRemainingAsync().Result;
         }
         public void DeleteItem()
         {
