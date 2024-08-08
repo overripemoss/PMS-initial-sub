@@ -1,6 +1,6 @@
 using Amazon.DynamoDBv2.DataModel;
 
-namespace NewUser
+namespace Database
 {
      [DynamoDBTable("Users")]
 

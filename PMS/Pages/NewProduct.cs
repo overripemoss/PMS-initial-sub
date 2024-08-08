@@ -1,6 +1,6 @@
 using Amazon.DynamoDBv2.DataModel;
 
-namespace NewProduct
+namespace Database
 {
     [DynamoDBTable("Store")]
         public class Product
