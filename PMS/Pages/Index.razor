@@ -1,5 +1,6 @@
 ﻿@page "/"
-
+@inject Database.dataBase db
+@using Database
 <!--CSS stuffs-->
 <head>
     <style>
@@ -60,6 +61,15 @@
             left: 2%;
             top: 5%;
         }
+        .Prod{
+            float: right;
+            color: #9F5600;
+            background-color: #EBFFF4;
+            height: 50px;
+            width: 50px;
+            outline: none;
+            border: none;
+        }
 
     </style>
 </head>
@@ -92,6 +102,20 @@
             }
 
     </div>
+    <div class="department">
+        @foreach(Product item in db.store)
+        {
+            <div class="Prods">
+                <button class="Prod">@item.Name</button>
+            </div>
+
+        }
+    </div>
     @code{
         bool drop = false;
+        protected override async Task OnInitializedAsync()
+        {
+            db.GetItem();
+
+        }
     }

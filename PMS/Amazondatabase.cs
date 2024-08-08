@@ -17,6 +17,7 @@ namespace Database
     public class dataBase
 	{
         public readonly DynamoDBContext dbContext;
+        public List<Product> store = new List<Product>();
          public dataBase() {
          AmazonDynamoDBConfig clientConfig = new AmazonDynamoDBConfig();
                    //define database keys
@@ -35,7 +36,8 @@ namespace Database
         public void GetItem()
         {
             List<ScanCondition> scanConditions = new List<ScanCondition>() { };
-            List<Product> store = dbContext.ScanAsync<Product>(scanConditions).GetRemainingAsync().Result;
+            store = dbContext.ScanAsync<Product>(scanConditions).GetRemainingAsync().Result;
+            
         }
         public void DeleteItem()
         {
