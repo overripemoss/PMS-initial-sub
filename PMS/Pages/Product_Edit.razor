@@ -33,7 +33,6 @@
     </div>
 
     @code{
-        public int ProductID;
         public static string Name = "";
         public static int stock = 0;
         public static int shelf = 0;
@@ -44,7 +43,6 @@
         public void AddProduct()
         {
             Product P1 = new Product();
-            P1.ProductID = randInt();
             P1.Name = Name;
             P1.Stock = stock;
             P1.Shelf = shelf;
@@ -53,9 +51,7 @@
             db.SaveItem(P1);
             Navigate.NavigateTo("/");
         }
-        int randInt() {
-            Random rand = new Random();
-            return (int)rand.NextInt64((long)999);
+
         }
     }
   

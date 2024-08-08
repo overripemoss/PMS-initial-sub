@@ -1,1 +1,20 @@
-@page "/View"
+@page "/View/{ProductID}"
+@inject NavigationManager Navigate
+@inject Database.dataBase db
+@using Database;
+<head>
+    <style>
+
+    </style>
+</head>
+<h1></h1>
+@code{
+    [Parameter]
+    public string ProductID {get; set;}
+    protected override async Task OnInitializedAsync()
+    {
+         db.GetItem();
+    }
+
+
+}
