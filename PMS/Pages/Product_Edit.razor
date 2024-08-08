@@ -1,36 +1,61 @@
 ﻿@page "/ProductsEdit"
 @inject NavigationManager Navigate
+@inject Database.dataBase db
+@using Database;
 
-<head>
-    <style>
-        body {
-            background-color: #296648;
+    <head>
+        <style>
+            body {
+                background-color: #296648;
+            }
+
+            .Productdetails {
+                color: #EBFFF4;
+            }
+        </style>
+    </head>
+    <div class="Productdetails">
+
+        <h1>Name of product</h1>
+        <input type="text" @bind="@Name" />
+        <h1>Amount of product in stock</h1>
+        <input type="number" @bind="@stock" />
+        <h1>Amount product that can fit on the shelf</h1>
+        <input type="number" @bind="@shelf" />
+        <h1>How much product come in each delivery</h1>
+        <input type="number" @bind="@delivery" />
+        <h1>Price of item</h1>
+        <input type="number" @bind="@price"/>
+        <h1>Cost per unit</h1>
+        <input type="number" @bind="@buy"/>
+
+        <button @onclick="@AddProduct">Add Product</button>
+    </div>
+
+    @code{
+        public int ProductID;
+        public static string Name = "";
+        public static int stock = 0;
+        public static int shelf = 0;
+        public static int delivery = 0;
+        public static int price = 0;
+        public static int buy = 0;
+        
+        public void AddProduct()
+        {
+            Product P1 = new Product();
+            P1.ProductID = randInt();
+            P1.Name = Name;
+            P1.Stock = stock;
+            P1.Shelf = shelf;
+            P1.Delivery = delivery;
+            P1.Cost = buy;
+            db.SaveItem(P1);
+            Navigate.NavigateTo("/");
         }
-
-        .Productdetails {
-            color: #EBFFF4;
+        int randInt() {
+            Random rand = new Random();
+            return (int)rand.NextInt64((long)999);
         }
-    </style>
-</head>
-<div class="Productdetails">
-
-    <h1>Name of product</h1>
-    <input type="text" @bind="@input" />
-    <h1>Amount of product in stock</h1>
-    <input type="number" value="" />
-    <h1>Amount product that can fit on the shelf</h1>
-    <input type="number" value="" />
-    <h1>How much product come in each delivery</h1>
-    <input type="number" value="" />
-
-    <button @onclick="@AddProduct">Add Product</button>
-</div>
-
-@code{
-    public string input = "";
-    public void AddProduct()
-    {
-        Navigate.NavigateTo("/Products");
     }
-
-}
+  
