@@ -25,6 +25,18 @@
             outline: none;
             border: none;
             }
+            .edit{
+            height: 22px;
+            width: 120px;
+            bottom: 1%;
+            right: 10%;
+            position: absolute;
+            font-size: 15px;
+            color: #9F5600;
+            background-color: #EBFFF4;
+            outline: none;
+            border: none; 
+            }
     </style>
 </head>
 <div class="Data">
@@ -36,6 +48,7 @@
     <h1>Cost per unit: $@value.Cost</h1>
 </div>
 <button class="Return" @onclick="@Navigate">Home Page</button>
+<button class="edit" @onclick="() => {EditNav(value);}">Edit product</button>
 @code{
     [Parameter]
     public string ProductID {get; set;}
@@ -56,5 +69,9 @@
     public void Navigate()
     {
         navigate.NavigateTo("/");
+    }
+    public void EditNav(Product product)
+    {
+        navigate.NavigateTo($"/ProductsEdit/{product.ProductID}");
     }
 }

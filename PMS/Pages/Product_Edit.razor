@@ -1,5 +1,5 @@
-﻿@page "/ProductsEdit"
-@inject NavigationManager Navigate
+﻿@page "/ProductsEdit/{ProductID}"
+@inject NavigationManager navigate
 @inject Database.dataBase db
 @using Database;
 
@@ -16,42 +16,55 @@
     </head>
     <div class="Productdetails">
 
-        <h1>Name of product</h1>
+        <h1>@value.Name</h1>
         <input type="text" @bind="@Name" />
-        <h1>Amount of product in stock</h1>
+        <h1>@value.Stock</h1>
         <input type="number" @bind="@stock" />
-        <h1>Amount product that can fit on the shelf</h1>
+        <h1>@value.Shelf</h1>
         <input type="number" @bind="@shelf" />
-        <h1>How much product come in each delivery</h1>
+        <h1>@value.Delivery</h1>
         <input type="number" @bind="@delivery" />
-        <h1>Price of item</h1>
+        <h1>@value.Price</h1>
         <input type="number" @bind="@price"/>
-        <h1>Cost per unit</h1>
+        <h1>@value.Cost</h1>
         <input type="number" @bind="@buy"/>
 
-        <button @onclick="@AddProduct">Add Product</button>
+        <button @onclick="@Changes">Complete changes</button>
+        <button @onclick="() => {CancelNavigate(value);}">Cancel</button>
     </div>
 
     @code{
-        public static string Name = "";
-        public static int stock = 0;
-        public static int shelf = 0;
-        public static int delivery = 0;
-        public static int price = 0;
-        public static int buy = 0;
+        [Parameter]
+        public string ProductID {get; set;}
+        Product value = null;
+        public string Name = "";
+        public int stock = 0;
+        public int shelf = 0;
+        public int delivery = 0;
+        public int price = 0;
+        public int buy = 0;
         
-        public void AddProduct()
+        public void Changes()
         {
-            Product P1 = new Product();
+            Product P1 = value;
             P1.Name = Name;
             P1.Stock = stock;
             P1.Shelf = shelf;
             P1.Delivery = delivery;
             P1.Cost = buy;
+            P1.Price =price;
             db.SaveItem(P1);
-            Navigate.NavigateTo("/");
+            navigate.NavigateTo("/");
         }
-
-        }
+    public void DefineAttributes()
+    {
+        string val = ProductID;
+        int prodId = Convert.ToInt32(val);
+        value = db.store.Find(x => x.ProductID == prodId);
+    }   
+    public void CancelNavigate(Product product)
+    {
+      navigate.NavigateTo($"/View/{product.ProductID}");
     }
+}
   
