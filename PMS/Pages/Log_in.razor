@@ -1,5 +1,7 @@
 ﻿@page "/Login"
 @inject NavigationManager Navigate
+@inject Database.dataBase db
+@using Database;
 <head>
     <style>
         body {
@@ -9,7 +11,12 @@
         .inputs {
             position: fixed;
         }
-    </style>
+        .Log{
+            position: absolute;
+            color: red;
+            top: 3%;
+        }
+        </style>
 
 </head>
 <div class="inputs">
@@ -17,14 +24,41 @@
     <input type="password" @bind="@Password" />
     <button @onclick="@LogUser">Log in</button>
 </div>
+    <div class="Log">
+        @if (drop == true)
+        {
+            <h1>The password or username is incorrect</h1>
+        }
+    </div>
 @code{
+    bool drop = false;
+    public bool Loggedin = false;
     string Username = "";
     string Password = "";
+    Users value = null;
     public void LogUser()
     {
-
-        Navigate.NavigateTo("/");
+        value = db.user.Find(x => x.UserName == Username);
+        if (value == null)
+        {
+            drop = true;
+        }
+        else
+        {
+            if(Password == value.Password){
+            Loggedin = true;
+            Navigate.NavigateTo("/");
+        }
+        else{
+            drop = true;
+        }
+        }
     }
+        protected override async Task OnInitializedAsync()
+    {
+         db.GetUser();
+    }
+
 }
 
 
