@@ -39,9 +39,9 @@ namespace Database
             store = dbContext.ScanAsync<Product>(scanConditions).GetRemainingAsync().Result;
             
         }
-        public void DeleteItem()
+        public void DeleteItem<T>(T model)
         {
-            
+            dbContext.DeleteAsync(model);
         }
         public void GetUser()
         {

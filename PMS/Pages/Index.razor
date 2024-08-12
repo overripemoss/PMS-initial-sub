@@ -114,7 +114,7 @@
         @foreach(Product item in db.store)
         {
             <div class="Prods">
-                <button class="Prod" @onclick="@Nav">@item.Name</button>
+                <button class="Prod" @onclick="() => {Nav(item);}">@item.Name</button>
             </div>
 
         }
@@ -126,9 +126,9 @@
             db.GetItem();
 
         }
-        public void Nav()
+        public void Nav(Product product)
         {
-            Navigation.NavigateTo("/View/{ProductID}");
+            Navigation.NavigateTo($"/View/{product.ProductID}");
         }
 
     }

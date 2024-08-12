@@ -1,20 +1,60 @@
 @page "/View/{ProductID}"
-@inject NavigationManager Navigate
+@inject NavigationManager navigate
 @inject Database.dataBase db
 @using Database;
 <head>
     <style>
-
+            body{
+            background-color: #29664b;
+            }
+            .Data{
+                color: #EBFFF4;
+            }
+            .title{
+                font-size: 75px;
+            }
+            .Return{
+            height: 22px;
+            width: 120px;
+            bottom: 1%;
+            right: 1%;
+            position: absolute;
+            font-size: 15px;
+            color: #9F5600;
+            background-color: #EBFFF4;
+            outline: none;
+            border: none;
+            }
     </style>
 </head>
-<h1></h1>
+<div class="Data">
+    <h1 class="title">@value.Name</h1>
+    <h1>Stock: @value.Stock</h1>
+    <h1>Shelf Space: @value.Shelf</h1>
+    <h1>Stock per delivery: @value.Delivery</h1>
+    <h1>Price per unit: $@value.Price</h1>
+    <h1>Cost per unit: $@value.Cost</h1>
+</div>
+<button class="Return" @onclick="@Navigate">Home Page</button>
 @code{
     [Parameter]
     public string ProductID {get; set;}
+    
+     Product value = null;
+
     protected override async Task OnInitializedAsync()
     {
          db.GetItem();
+         DefineAttributes();
     }
-
-
+    public void DefineAttributes()
+    {
+        string val = ProductID;
+        int prodId = Convert.ToInt32(val);
+        value = db.store.Find(x => x.ProductID == prodId);
+    }
+    public void Navigate()
+    {
+        navigate.NavigateTo("/");
+    }
 }
