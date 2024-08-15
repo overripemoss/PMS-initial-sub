@@ -56,6 +56,11 @@
             db.SaveItem(P1);
             navigate.NavigateTo("/");
         }
+    protected override async Task OnInitializedAsync()
+    {
+         db.GetItem();
+         DefineAttributes();
+    }
     public void DefineAttributes()
     {
         string val = ProductID;
