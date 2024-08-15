@@ -12,32 +12,68 @@
             .Productdetails {
                 color: #EBFFF4;
             }
+            .Button1{
+            height: 36px;
+            width: 120px;
+            bottom: 1%;
+            right: 1%;
+            position: absolute;
+            font-size: 15px;
+            color: #9F5600;
+            background-color: #EBFFF4;
+            outline: none;
+            border: none; 
+            }
+            .Button2{
+            height: 22px;
+            width: 120px;
+            bottom: 1%;
+            right: 10%;
+            position: absolute;
+            font-size: 15px;
+            color: #9F5600;
+            background-color: #EBFFF4;
+            outline: none;
+            border: none; 
+            }
+            .Button3{
+            height: 22px;
+            width: 120px;
+            bottom: 1%;
+            right: 19%;
+            position: absolute;
+            font-size: 15px;
+            color: #9F5600;
+            background-color: #EBFFF4;
+            outline: none;
+            border: none; 
+            }
         </style>
     </head>
     <div class="Productdetails">
 
         <h1>@value.Name</h1>
-        <input type="text" @bind="@Name" />
-        <h1>@value.Stock</h1>
+        <h1>Stock: @value.Stock</h1>
         <input type="number" @bind="@stock" />
-        <h1>@value.Shelf</h1>
+        <h1>Room on shelf:@value.Shelf</h1>
         <input type="number" @bind="@shelf" />
-        <h1>@value.Delivery</h1>
+        <h1>Product recieved each delivery: @value.Delivery</h1>
         <input type="number" @bind="@delivery" />
-        <h1>@value.Price</h1>
+        <h1>Price: @value.Price</h1>
         <input type="number" @bind="@price"/>
-        <h1>@value.Cost</h1>
+        <h1>Cost per unit: @value.Cost</h1>
         <input type="number" @bind="@buy"/>
-
-        <button @onclick="@Changes">Complete changes</button>
-        <button @onclick="() => {CancelNavigate(value);}">Cancel</button>
+    </div>
+    <div class="buttons">
+        <button class="Button1" @onclick="@Changes">Complete changes</button>
+        <button class="Button2" @onclick="() => {CancelNavigate(value);}">Cancel</button>
+        <button class="Button3" @onclick="@Delete">Delete Item</button>
     </div>
 
     @code{
         [Parameter]
         public string ProductID {get; set;}
         Product value = null;
-        public string Name = "";
         public int stock = 0;
         public int shelf = 0;
         public int delivery = 0;
@@ -47,7 +83,6 @@
         public void Changes()
         {
             Product P1 = value;
-            P1.Name = Name;
             P1.Stock = stock;
             P1.Shelf = shelf;
             P1.Delivery = delivery;
@@ -70,6 +105,12 @@
     public void CancelNavigate(Product product)
     {
       navigate.NavigateTo($"/View/{product.ProductID}");
+    }
+    public void Delete()
+    {
+        Product P1 = value;
+        db.DeleteItem(P1);
+        navigate.NavigateTo("/");
     }
 }
   

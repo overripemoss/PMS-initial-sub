@@ -12,6 +12,30 @@
             .Productdetails {
                 color: #EBFFF4;
             }
+            .Button1{
+            height: 22px;
+            width: 120px;
+            bottom: 1%;
+            right: 1%;
+            position: absolute;
+            font-size: 15px;
+            color: #9F5600;
+            background-color: #EBFFF4;
+            outline: none;
+            border: none; 
+            }
+            .Button2{
+            height: 22px;
+            width: 120px;
+            bottom: 1%;
+            right: 10%;
+            position: absolute;
+            font-size: 15px;
+            color: #9F5600;
+            background-color: #EBFFF4;
+            outline: none;
+            border: none; 
+            }
         </style>
     </head>
     <div class="Productdetails">
@@ -29,7 +53,8 @@
         <h1>Cost per unit</h1>
         <input type="number" @bind="@buy"/>
 
-        <button @onclick="@AddProduct">Add Product</button>
+        <button class="Button1" @onclick="@AddProduct">Add Product</button>
+        <button class="Button2" @onclick="@Cancel">Cancel</button>
     </div>
 
     @code{
@@ -57,6 +82,10 @@
         int randInt() {
             Random rand = new Random();
             return (int)rand.NextInt64((long)999);
+        }
+        public void Cancel()
+        {
+            Navigate.NavigateTo("/");
         }
     }
   

@@ -11,14 +11,48 @@
         .inputs {
             color: #EBFFF4;
         }
+        .Button{
+            height: 22px;
+            width: 120px;
+            top: 60%;
+            right: 49%;
+            position: absolute;
+            font-size: 15px;
+            color: #9F5600;
+            background-color: #EBFFF4;
+            outline: none;
+            border: none; 
+        }
+        .userinput{
+            height: 25px;
+            width: 180px;
+            top: 40%;
+            left: 40%;
+            color: #9F5600;
+            background-color: #EBFFF4;
+            outline: none;
+            border: none; 
+            position: absolute;
+            font-size: 15px;
+        }
+        .passinput{
+            height: 25px;
+            width: 180px;
+            top: 50%;
+            left: 40%;
+            color: #9F5600;
+            background-color: #EBFFF4;
+            outline: none;
+            border: none; 
+            position: absolute;
+            font-size: 15px;
+        }
     </style>
 </head>
 <div class="inputs">
-    <input type="text" @bind="@username" id="Username" required title="This username already exists"/>
-    <input type="password" @bind="@password" id="Password" required title="This password already exists"/>
-    <button @onclick="@AddUser">Sign in</button>
-
-
+    <input class="userinput" type="text" @bind="@username" id="Username" required title="This username already exists"/>
+    <input class="passinput" type="password" @bind="@password" id="Password" required title="This password already exists"/>
+    <button class="Button" @onclick="@AddUser">Sign in</button>
 </div>
 
 @code{
