@@ -45,13 +45,22 @@
         }
         else
         {
-            if(Password == value.Password){
-            Loggedin = true;
-            Navigate.NavigateTo("/");
-        }
-        else{
-            drop = true;
-        }
+            if (Password.Length < 8)
+            {
+                drop = true;
+            }
+            else 
+            {
+                if(Password == value.Password)
+                {
+                    Loggedin = true;
+                    Navigate.NavigateTo("/");
+                }
+                else
+                {
+                drop = true;
+                }
+            }
         }
     }
         protected override async Task OnInitializedAsync()
