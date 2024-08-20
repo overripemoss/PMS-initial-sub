@@ -58,6 +58,7 @@
     </div>
 
     @code{
+        //defines all of the attributes for a new product
         public int ProductID;
         public static string Name = "";
         public static int stock = 0;
@@ -65,7 +66,7 @@
         public static int delivery = 0;
         public static int price = 0;
         public static int buy = 0;
-        
+        //creates the object and defines attributes for pushing to database and navigates to home page
         public void AddProduct()
         {
             Product P1 = new Product();
@@ -79,10 +80,12 @@
             db.SaveItem(P1);
             Navigate.NavigateTo("/");
         }
+        //creates the product id
         int randInt() {
             Random rand = new Random();
             return (int)rand.NextInt64((long)999);
         }
+        //cancels the creation of object and navigates to homepage
         public void Cancel()
         {
             Navigate.NavigateTo("/");

@@ -16,6 +16,7 @@ namespace Database
 {
     public class dataBase
 	{
+        //instantiates and calls database in amazon cloud
         public readonly DynamoDBContext dbContext;
         public List<Product> store = new List<Product>();
         public List<Users> user = new List<Users>();
@@ -30,20 +31,24 @@ namespace Database
             SkipVersionCheck = true
         });
         }
+        //save function for products and user to database
         public void SaveItem<T>(T model)
         {
             dbContext.SaveAsync(model);
         }
+        //pulls product list from database
         public void GetItem()
         {
             List<ScanCondition> scanConditions = new List<ScanCondition>() { };
             store = dbContext.ScanAsync<Product>(scanConditions).GetRemainingAsync().Result;
             
         }
+        //deltes item from database
         public void DeleteItem<T>(T model)
         {
             dbContext.DeleteAsync(model);
         }
+        //pull user list from database
         public void GetUser()
         {
             List<ScanCondition> scanConditions = new List<ScanCondition>() { };

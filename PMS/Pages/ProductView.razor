@@ -50,26 +50,31 @@
 <button class="Return" @onclick="@Navigate">Home Page</button>
 <button class="edit" @onclick="() => {EditNav(value);}">Edit product</button>
 @code{
+    //defines product id value to call product attributes from database
     [Parameter]
     public string ProductID {get; set;}
     
      Product value = null;
 
+    //calls pull function from database and converts it into accessible list
     protected override async Task OnInitializedAsync()
     {
          db.GetItem();
          DefineAttributes();
     }
+    //converts database list into accessible list
     public void DefineAttributes()
     {
         string val = ProductID;
         int prodId = Convert.ToInt32(val);
         value = db.store.Find(x => x.ProductID == prodId);
     }
+    //navigates to homepage
     public void Navigate()
     {
         navigate.NavigateTo("/");
     }
+    //navigates to edit poage for product matching productid value
     public void EditNav(Product product)
     {
         navigate.NavigateTo($"/ProductsEdit/{product.ProductID}");

@@ -2,6 +2,7 @@ using Amazon.DynamoDBv2.DataModel;
 
 namespace Database
 {
+    //creates user object for pushing to database
      [DynamoDBTable("Users")]
 
          public class Users

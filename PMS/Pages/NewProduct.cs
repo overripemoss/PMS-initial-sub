@@ -2,6 +2,7 @@ using Amazon.DynamoDBv2.DataModel;
 
 namespace Database
 {
+    //creates object for pushing to database Products
     [DynamoDBTable("Store")]
         public class Product
         {

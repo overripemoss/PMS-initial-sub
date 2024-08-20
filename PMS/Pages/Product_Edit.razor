@@ -71,15 +71,17 @@
     </div>
 
     @code{
+        //define parameter for editing products
         [Parameter]
         public string ProductID {get; set;}
         Product value = null;
+        //define product values
         public int stock = 0;
         public int shelf = 0;
         public int delivery = 0;
         public int price = 0;
         public int buy = 0;
-        
+        //create object and define attributes for pushing to database
         public void Changes()
         {
             Product P1 = value;
@@ -91,21 +93,25 @@
             db.SaveItem(P1);
             navigate.NavigateTo("/");
         }
+        //calls the pull request for the list of items in database and converts it into a accesible object
     protected override async Task OnInitializedAsync()
     {
          db.GetItem();
          DefineAttributes();
     }
+    //converts database list into accesible list
     public void DefineAttributes()
     {
         string val = ProductID;
         int prodId = Convert.ToInt32(val);
         value = db.store.Find(x => x.ProductID == prodId);
     }   
+    //cancel changes to product and navigates back to product view
     public void CancelNavigate(Product product)
     {
       navigate.NavigateTo($"/View/{product.ProductID}");
     }
+    //deletes item from database
     public void Delete()
     {
         Product P1 = value;

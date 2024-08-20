@@ -119,12 +119,15 @@
         }
     </div>
     @code{
+        //define dropdown menu boollean
         bool drop = false;
+        // innitialize pull request from database
         protected override async Task OnInitializedAsync()
         {
             db.GetItem();
 
         }
+        // navigate to each product view page
         public void Nav(Product product)
         {
             Navigation.NavigateTo($"/View/{product.ProductID}");

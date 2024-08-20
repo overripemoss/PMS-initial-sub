@@ -56,10 +56,12 @@
 </div>
 
 @code{
+    //defines the major attributes
+
     public bool LogedIn = false;
     public static string username = "";
     public static string password = "";
-    //method to create a new user
+    //method to create a new user and define attributes for database
     public void AddUser()
     {
         Users U1 = new Users();
@@ -70,6 +72,7 @@
         LogedIn = true;
         Nav.NavigateTo("/");
     }
+    //creates userid
     int UserInt() {
     Random rand = new Random();
     return (int)rand.NextInt64((long)999);

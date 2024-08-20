@@ -31,11 +31,13 @@
         }
     </div>
 @code{
+    //define all log in attributes
     bool drop = false;
     public bool Loggedin = false;
     string Username = "";
     string Password = "";
     Users value = null;
+    //data validation and log in checks
     public void LogUser()
     {
         value = db.user.Find(x => x.UserName == Username);
@@ -63,6 +65,7 @@
             }
         }
     }
+    //pull request for the user list from database
         protected override async Task OnInitializedAsync()
     {
          db.GetUser();
